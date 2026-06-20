@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicciones ML | MediControl</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card-prediccion {
+            border-left: 5px solid #0d6efd;
+            transition: transform 0.3s;
+        }
+        .card-prediccion:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        .badge-prediccion {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">MediControl AI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./medicamentos.html">Medicamentos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./movimientos.html">Movimientos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-warning fw-bold" href="./predicciones.html">Predicción ML</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h2 class="mb-3 text-dark">Predicciones de Machine Learning</h2>
+                <p class="text-muted">Sistema de predicción de demanda basado en histórico de consumo</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <button id="btnEntrenarModelo" class="btn btn-warning btn-lg">
+                    <i class="bi bi-gear"></i> Entrenar Modelo
+                </button>
+            </div>
+        </div>
+
+        <!-- Sección de entrenamiento -->
+        <div class="alert alert-info d-none" id="alertaEntrenamiento" role="alert">
+            <strong id="tituloAlerta">Información:</strong> <span id="textoAlerta"></span>
+        </div>
+
+        <!-- Reporte de predicciones -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Reporte de Predicciones para 30 Días</h5>
+            </div>
+            <div class="card-body">
+                <div id="contenedorPredicciones" class="row">
+                    <div class="col-12 text-center text-muted">
+                        <p>Cargando predicciones...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predicción individual -->
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Consultar Predicción Individual</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="selectMedicamento" class="form-label">Seleccionar Medicamento:</label>
+                        <select class="form-select" id="selectMedicamento">
+                            <option selected disabled>Cargando medicamentos...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-end">
+                        <button id="btnPredecirIndividual" class="btn btn-info w-100">
+                            Obtener Predicción
+                        </button>
+                    </div>
+                </div>
+                <div id="resultadoIndividual" class="alert d-none" role="alert">
+                    <h5 id="nombreMedIndividual"></h5>
+                    <p class="mb-1"><strong>Predicción para 30 días:</strong> <span id="prediccionIndividual"></span></p>
+                    <p class="mb-1"><strong>Consumo histórico:</strong> <span id="consumoHistorico"></span></p>
+                    <p class="mb-0"><strong>Promedio diario:</strong> <span id="promedioIndividual"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/predicciones.js"></script>
+</body>
+</html>
